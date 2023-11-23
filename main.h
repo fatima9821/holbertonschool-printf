@@ -2,17 +2,12 @@
 #define MAIN_H
 
 #include <stdarg.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 
 int _printf(const char *format, ...);
-int print_char(va_list args);
-int print_string(va_list args);
-int print_percent(va_list args);
-int print_int(va_list args);
-int print_unsigned(va_list args);
-int print_octal(va_list args);
-int print_hex(va_list args);
-int print_address(va_list args);
-int print_unknown(va_list args);
-int print_unsigned_hex(va_list args);
+int print_string(const char *str);
+int _putchar(char c);
 
 #endif /* MAIN_H */
