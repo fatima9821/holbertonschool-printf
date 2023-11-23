@@ -1,0 +1,52 @@
+.TH _PRINTF 3 "23 novembre 2023" "_printf man page"
+
+.SH NAME
+.B _printf
+- Formatted output conversion.
+
+.SH SYNOPSIS
+.B #include "main.h"
+.B int _printf(const char *
+.I format
+.B , ...)
+
+.SH DESCRIPTION
+.B _printf()
+Prints to standard output the
+.B format
+string, interpreting
+.B ‘%’
+directives to format numeric and string arguments in a way that is mostly similar to the
+.B C ‘printf’ function.
+
+.SH FUNCTION PARAMETERS
+The first parameter (
+.I format
+) is the format string, and subsequent parameters are the values to be formatted and printed.
+
+.SH THE CONVERSION SPECIFIERS
+.IP %%
+prints a single %
+.IP %c
+prints the next argument of type Char (int argument is converted to a character)
+.IP %s
+prints the next argument of type Char * // pointer to a string
+...
+.PP NOTE: A single % at the end of the FORMAT string is interpreted as an error.
+.PP NOTE: A single % followed by an unknown specifier is not interpreted.
+
+.SH RETURN VALUE
+.B _printf
+returns the number of printed characters.
+
+.SH EXAMPLES
+Include examples of using _printf with different format specifiers.
+
+.SH SEE ALSO
+.I printf(3)
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHOR
+Fatoumata & Alfred & Othman
