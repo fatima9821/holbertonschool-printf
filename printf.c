@@ -27,24 +27,6 @@ int _printf(const char *format, ...) {
 			else if (*format == 'd' || *format == 'i') {
 				print_int(args);
 			}
-			else if (*format == 'u') {
-				print_unsigned(args);
-			}
-			else if (*format == 'o') {
-				print_octal(args);
-			}
-			else if (*format == 'x') {
-				print_hex(args);
-			}
-			else if (*format == 'X') {
-				print_unsigned_hex(args);
-			}
-			else if (*format == 'p') {
-				print_address(args);
-			}
-			else if (*format == 'r') {
-				print_unknown(args);
-			}
 			else {
 				_putchar('%');
 				char_count++;
