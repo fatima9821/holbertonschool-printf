@@ -1,0 +1,111 @@
+#include <stdarg.h>
+#include <unistd.h>
+#include <stdio.h>
+#include "main.h"
+#include "_putchar.h"
+
+int _printf(const char *format, ...)
+{
+        va_list args;
+        int char_count = 0;
+
+        va_start(args, format);
+
+        while (*format != '\0')
+        {
+                if (*format == '%')
+                {
+                        format++;
+
+                        if (*format == 'c')
+                        {
+                                char c = (char)va_arg(args, int);
+                                write(1, &c, 1);
+                                char_count++;
+                        }
+                        else if (*format == 's')
+                        {
+                                char *str = va_arg(args, char*);
+                                while (*str != '\0')
+                                {
+                                        write(1, str, 1);
+                                        str++;
+                                        char_count++;
+                                }
+                        }
+                        else if (*format == '%')
+                        {
+                                write(1, "%", 1);
+                                char_count++;
+                        }
+                        else if (*format == 'd' || *format == 'i')
+                        {
+                                int num = va_arg(args, int);
+                                char buffer[20];
+                                int length = snprintf(buffer, sizeof(buffer), "%d", num);
+                                write(1, buffer, length);
+                                char_count += length;
+                        }
+                        else if (*format == 'u')
+                        {
+                                unsigned int num = va_arg(args, unsigned int);
+                                char buffer[20];
+                                int length = snprintf(buffer, sizeof(buffer), "%u", num);
+                                write(1, buffer, length);
+                                char_count += length;
+                        }
+                        else if (*format == 'o')
+                        {
+                                unsigned int num = va_arg(args, unsigned int);
+                                char buffer[20];
+                                int length = snprintf(buffer, sizeof(buffer), "%o", num);
+                                write(1, buffer, length);
+                                char_count += length;
+                        }
+                        else if (*format == 'x')
+                        {
+                                unsigned int num = va_arg(args, unsigned int);
+                                char buffer[20];
+                                int length = snprintf(buffer, sizeof(buffer), "%x", num);
+                                write(1, buffer, length);
+                                char_count += length;
+                        }
+                        else if (*format == 'X')
+                        {
+                                unsigned int num = va_arg(args, unsigned int);
+                                char buffer[20];
+                                int length = snprintf(buffer, sizeof(buffer), "%X", num);
+                                write(1, buffer, length);
+                                char_count += length;
+                        }
+                        else if (*format == 'p')
+                        {
+                                void *addr = va_arg(args, void*);
+                                char buffer[20];
+                                int length = snprintf(buffer, sizeof(buffer), "%p", addr);
+                                write(1, buffer, length);
+                                char_count += length;
+                        }
+                        else if (*format == 'r')
+                        {
+                                write(1, "%r", 2);
+                                char_count += 2;
+                        }
+                        else
+                        {
+                                write(1, "%", 1);
+                                char_count++;
+                                write(1, format, 1);
+                                char_count++;
+                        }
+                }
+                else
+                {
+                        write(1, format, 1);
+                        char_count++;
+                }
+                format++;
+        }
+        va_end(args);
+        return (char_count);
+}
